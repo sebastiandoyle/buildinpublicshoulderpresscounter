@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shoulder Press Rep Tracker</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%2300bcd4'/><text x='50' y='60' text-anchor='middle' font-size='48' fill='white'>SP</text></svg>">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.10.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@2.1.3/dist/pose-detection.min.js"></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <h1>Shoulder Press Rep Tracker</h1>
+    </header>
+
+    <main class="layout">
+      <section class="video-pane">
+        <div class="video-wrapper">
+          <video id="video" playsinline autoplay muted class="mirror"></video>
+          <canvas id="overlay" class="mirror"></canvas>
+          <div id="camera-state" class="camera-state">Camera: <span id="camera-status">idle</span></div>
+        </div>
+        <div class="controls">
+          <button id="start-btn">Start Camera</button>
+          <button id="stop-btn" disabled>Stop Camera</button>
+          <button id="reset-btn">Reset</button>
+        </div>
+        <div class="hints">
+          <p>
+            Tip: Stand in frame and perform shoulder presses. A rep counts when your elbow rises above your shoulder after having gone below it.
+          </p>
+        </div>
+      </section>
+
+      <section class="stats-pane">
+        <div class="cards">
+          <div class="card">
+            <div class="card-title">Reps</div>
+            <div id="rep-count" class="card-value">0</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Avg Time Between Reps</div>
+            <div id="avg-interval" class="card-value">—</div>
+          </div>
+          <div class="card">
+            <div class="card-title">Last Rep Interval</div>
+            <div id="last-interval" class="card-value">—</div>
+          </div>
+          <div class="card">
+            <div class="card-title">State</div>
+            <div id="rep-state" class="card-value">waiting</div>
+          </div>
+        </div>
+        <div class="legend">
+          <span class="dot shoulder"></span> Shoulder
+          <span class="dot elbow"></span> Elbow
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <small>All processing happens locally in your browser.</small>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

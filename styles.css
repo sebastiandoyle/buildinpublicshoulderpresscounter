@@ -1,0 +1,33 @@
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; color: #0f172a; background: #f8fafc; }
+
+.app-header { padding: 16px 20px; background: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 10; }
+.app-header h1 { margin: 0; font-size: 20px; }
+
+.layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; padding: 20px; align-items: start; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } }
+
+.video-wrapper { position: relative; width: 100%; background: #000; border-radius: 12px; overflow: hidden; aspect-ratio: 16/9; }
+
+video, canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mirror { transform: scaleX(-1); }
+
+.camera-state { position: absolute; left: 12px; bottom: 12px; color: #e2e8f0; font-size: 12px; background: rgba(0,0,0,0.5); padding: 6px 8px; border-radius: 8px; }
+
+.controls { display: flex; gap: 10px; margin-top: 12px; }
+.controls button { padding: 10px 14px; border-radius: 10px; border: 1px solid #cbd5e1; background: white; cursor: pointer; font-weight: 600; }
+.controls button:disabled { opacity: .6; cursor: not-allowed; }
+
+.hints { font-size: 13px; color: #334155; margin-top: 8px; }
+
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.card { background: white; padding: 16px; border-radius: 12px; border: 1px solid #e2e8f0; }
+.card-title { font-size: 12px; color: #475569; }
+.card-value { font-size: 28px; font-weight: 700; margin-top: 6px; }
+
+.legend { margin-top: 14px; font-size: 14px; display: flex; gap: 16px; align-items: center; color: #334155; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 999px; margin-right: 6px; }
+.dot.shoulder { background: #10b981; }
+.dot.elbow { background: #ef4444; }
+
+.app-footer { padding: 16px 20px; color: #64748b; }
