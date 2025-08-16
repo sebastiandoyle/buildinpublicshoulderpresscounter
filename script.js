@@ -55,6 +55,11 @@
   async function start() {
     if (running) return;
 
+    // Track camera start event
+    if (typeof va !== 'undefined') {
+      va.track('camera_started');
+    }
+
     setUiRunning(true);
     cameraStatusEl.textContent = 'starting…';
 
@@ -104,6 +109,11 @@
   }
 
   function reset() {
+    // Track reset event
+    if (typeof va !== 'undefined') {
+      va.track('workout_reset', { previous_rep_count: repCount });
+    }
+    
     repCount = 0;
     phase = 'unknown';
     lastRepTime = 0;
@@ -225,6 +235,11 @@
             lastRepTime = now;
             phase = 'above';
             updateStats();
+            
+            // Track rep completion
+            if (typeof va !== 'undefined') {
+              va.track('rep_completed', { rep_count: repCount });
+            }
           }
 
           repStateEl.textContent = phase;
